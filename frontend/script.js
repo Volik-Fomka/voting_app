@@ -1,13 +1,5 @@
-document.getElementById('voteCat').addEventListener('click', function() {
-    vote('Cat');
-});
-
-document.getElementById('voteDog').addEventListener('click', function() {
-    vote('Dog');
-});
-
 function vote(selection) {
-    fetch('/vote', {
+    fetch('http://localhost:8081/vote', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -24,7 +16,7 @@ function vote(selection) {
 }
 
 function updateStatistics() {
-    fetch('/statistics')
+    fetch('http://localhost:8081/statistics')
     .then(response => response.json())
     .then(data => {
         document.getElementById('statistics').innerHTML = `<p>Cats: ${data.cats} | Dogs: ${data.dogs}</p>`;
@@ -33,5 +25,3 @@ function updateStatistics() {
         console.error('Error:', error);
     });
 }
-
-updateStatistics(); // Initial statistics update

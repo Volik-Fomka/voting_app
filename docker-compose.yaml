@@ -50,6 +50,13 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/usr/src/app
+      
   voting-service:
     build: ./voting-service
     ports:
