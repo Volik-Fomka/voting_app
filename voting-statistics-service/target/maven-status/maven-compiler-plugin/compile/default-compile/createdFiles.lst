@@ -1,0 +1,6 @@
+com/example/statisticservice/repository/StatisticsRepository.class
+com/example/statisticservice/model/Vote.class
+com/example/statisticservice/controller/StatisticsController.class
+com/example/statisticservice/service/StatisticsService.class
+com/example/statisticservice/model/VoteStatistics.class
+com/example/statisticservice/StatisticserviceApplication.class

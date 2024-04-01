@@ -1,0 +1,6 @@
+/home/volik/Documents/voting_app/voting-statistics-service/src/main/java/com/example/statisticservice/model/VoteStatistics.java
+/home/volik/Documents/voting_app/voting-statistics-service/src/main/java/com/example/statisticservice/repository/StatisticsRepository.java
+/home/volik/Documents/voting_app/voting-statistics-service/src/main/java/com/example/statisticservice/controller/StatisticsController.java
+/home/volik/Documents/voting_app/voting-statistics-service/src/main/java/com/example/statisticservice/StatisticserviceApplication.java
+/home/volik/Documents/voting_app/voting-statistics-service/src/main/java/com/example/statisticservice/service/StatisticsService.java
+/home/volik/Documents/voting_app/voting-statistics-service/src/main/java/com/example/statisticservice/model/Vote.java
