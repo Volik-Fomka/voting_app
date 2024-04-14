@@ -18,8 +18,6 @@ public class StatisticsService {
 
     @Cacheable("voteStatistics")
     public VoteStatistics getVoteStatistics() {
-        long cats = statisticsRepository.countCats();
-        long dogs = statisticsRepository.countDogs();
-        return new VoteStatistics(cats, dogs);
+        return statisticsRepository.countVotes().orElse(new VoteStatistics(0, 0)); // Return default values if no data found
     }
 }
