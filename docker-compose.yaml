@@ -50,17 +50,24 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - voting-service
+      - voting-statistics-service
+      - frontend
+
   frontend:
     build: ./frontend
-    ports:
-      - "8080:8080"
     volumes:
       - ./frontend:/usr/src/app
       
   voting-service:
     build: ./voting-service
-    ports:
-      - "8081:8081"
     depends_on:
       - kafka
       - postgres
@@ -72,8 +79,6 @@ services:
 
   voting-statistics-service:
     build: ./voting-statistics-service
-    ports:
-      - "8082:8082"
     depends_on:
       - postgres
       - redis
