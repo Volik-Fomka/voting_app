@@ -1,5 +1,21 @@
+function setLoading(isLoading) {
+    // Disable or enable buttons based on isLoading status
+    document.getElementById('voteCat').disabled = isLoading;
+    document.getElementById('voteDog').disabled = isLoading;
+}
+
+function showConfirmation(message) {
+    // Display a temporary message for user feedback
+    const confirmationBox = document.getElementById('confirmation');
+    confirmationBox.innerText = message;
+    setTimeout(() => {
+        confirmationBox.innerText = '';  // Clear message after 3 seconds
+    }, 3000);
+}
+
 function vote(selection) {
     console.log('Voting for:', selection);  // Debug log
+    setLoading(true);  // Disable buttons during the request
     fetch('/vote', {
         method: 'POST',
         headers: {
@@ -10,10 +26,15 @@ function vote(selection) {
     .then(response => response.json())
     .then(data => {
         console.log('Vote response:', data);  // Debug log
-        updateStatistics();
+        updateStatistics();  // Update the statistics on the same page
+        showConfirmation(`Your vote for '${selection}' was recorded!`);  // Show confirmation
     })
     .catch((error) => {
         console.error('Error:', error);
+        showConfirmation('Error in voting! Please try again.');  // Show error message
+    })
+    .finally(() => {
+        setLoading(false);  // Re-enable buttons once processing is complete
     });
 }
 
@@ -34,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('voteCat').addEventListener('click', function() {
         vote('Cat');
     });
-
     document.getElementById('voteDog').addEventListener('click', function() {
         vote('Dog');
     });
